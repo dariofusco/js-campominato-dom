@@ -1,25 +1,21 @@
 document.getElementById("myBtn").addEventListener("click", function () {
-    
-    generateSquare ()
+
+    generateSquare();
 
     const numRandomArray = []
 
     for (let i = 1; i <= 16; i++) {
         const numRandom = Math.round(Math.random() * 99) + 1;
-        console.log(numRandom)
+        //console.log(numRandom)
         numRandomArray.push(numRandom)
     }
+    console.log(numRandomArray)
 
-    for (let i = 0; i < numRandomArray.length; i++) {
-        const bomb = numRandomArray[i]
-        console.log(bomb)
-    }
-
-    addToggle()
+    addToggle(numRandomArray);
 
 })
 
-function generateSquare () {
+function generateSquare() {
     const div = document.querySelector("div.row")
 
     for (let i = 1; i <= 100; i++) {
@@ -29,15 +25,23 @@ function generateSquare () {
 
 }
 
-function addToggle () {
+function addToggle(numRandomArray) {
     const squareList = document.querySelectorAll(".square")
 
     for (let i = 0; i < squareList.length; i++) {
-        
+
         squareList[i].addEventListener("click", function () {
             squareList[i].classList.toggle("bg-success")
-            console.log(squareList[i].innerHTML)
+            //console.log(squareList[i].innerHTML)
+            for (let j = 0; j < numRandomArray.length; j++) {
+                const bomb = numRandomArray[j]
+                console.log(bomb)
+                if (bomb === (i + 1)) {
+                    squareList[i].classList.toggle("bg-danger")
+                    console.log("bomba")
+                    break;
+                }
+            }
         })
-        
     }
 }
