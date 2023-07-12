@@ -23,7 +23,7 @@ function generateSquare() {
     const div = document.querySelector("div.row")
 
     for (let i = 1; i <= 100; i++) {
-        const singleSquare = `<div class="${i} border border-1 square">${i}</div>`
+        const singleSquare = `<div class="${i} border border-1 square text-white">${i}</div>`
         div.innerHTML += singleSquare
     }
 
@@ -35,17 +35,17 @@ function addToggle(numRandomArray) {
     for (let i = 0; i < squareList.length; i++) {
 
         squareList[i].addEventListener("click", function () {
-            squareList[i].classList.toggle("bg-success")
+            squareList[i].classList.toggle("bg-primary")
             console.log(squareList[i].innerHTML)
             score.push(squareList[i].innerHTML)
+            
             for (let j = 0; j < numRandomArray.length; j++) {
                 const bomb = numRandomArray[j]
-
                 if (bomb === (i + 1)) {
                     squareList[i].classList.toggle("bg-danger")
-                    document.getElementById("results").innerHTML = "Hai Perso!"
                     console.log("bomba")
-                    break;
+                    window.alert ("Hai Perso! Il tuo punteggio è " + (score.length - 1))
+                    window.location.reload()
                 }
             }
         })
@@ -53,4 +53,5 @@ function addToggle(numRandomArray) {
 }
 
 const score = []
-console.log(score)
+
+
