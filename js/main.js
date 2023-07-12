@@ -1,4 +1,4 @@
-document.getElementById("myBtn").addEventListener("click", function () {
+document.getElementById("generate").addEventListener("click", function () {
 
     generateSquare();
 
@@ -6,8 +6,12 @@ document.getElementById("myBtn").addEventListener("click", function () {
 
     for (let i = 1; i <= 16; i++) {
         const numRandom = Math.round(Math.random() * 99) + 1;
-        //console.log(numRandom)
-        numRandomArray.push(numRandom)
+        if (numRandomArray.indexOf(numRandom) >= 0) {
+            i--
+        } else {
+            numRandomArray.push(numRandom)
+        }
+
     }
     console.log(numRandomArray)
 
@@ -32,12 +36,14 @@ function addToggle(numRandomArray) {
 
         squareList[i].addEventListener("click", function () {
             squareList[i].classList.toggle("bg-success")
-            //console.log(squareList[i].innerHTML)
+            console.log(squareList[i].innerHTML)
+            score.push(squareList[i].innerHTML)
             for (let j = 0; j < numRandomArray.length; j++) {
                 const bomb = numRandomArray[j]
-                console.log(bomb)
+
                 if (bomb === (i + 1)) {
                     squareList[i].classList.toggle("bg-danger")
+                    document.getElementById("results").innerHTML = "Hai Perso!"
                     console.log("bomba")
                     break;
                 }
@@ -45,3 +51,6 @@ function addToggle(numRandomArray) {
         })
     }
 }
+
+const score = []
+console.log(score)
