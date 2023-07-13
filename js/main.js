@@ -1,7 +1,8 @@
 document.getElementById("generate").addEventListener("click", function () {
-
+    // Invoco la funzione per generare i quadrati
     generateSquare();
 
+    // Genero numero random.
     const numRandomArray = []
 
     for (let i = 1; i <= 16; i++) {
@@ -15,10 +16,11 @@ document.getElementById("generate").addEventListener("click", function () {
     }
     console.log(numRandomArray)
 
+    // Invoco la funzione per colorare i quadrati.
     addToggle(numRandomArray);
 
 })
-
+// Funzione per generare i quadrati.
 function generateSquare() {
     const div = document.querySelector("div.row")
 
@@ -28,7 +30,7 @@ function generateSquare() {
     }
 
 }
-
+// Funzione per colorare i quadrati al click.
 function addToggle(numRandomArray) {
     const squareList = document.querySelectorAll(".square")
 
@@ -38,20 +40,20 @@ function addToggle(numRandomArray) {
             squareList[i].classList.toggle("bg-primary")
             console.log(squareList[i].innerHTML)
             score.push(squareList[i].innerHTML)
-            
+
             for (let j = 0; j < numRandomArray.length; j++) {
                 const bomb = numRandomArray[j]
                 if (bomb === (i + 1)) {
                     squareList[i].classList.toggle("bg-danger")
                     console.log("bomba")
-                    window.alert ("Hai Perso! Il tuo punteggio è " + (score.length - 1))
+                    window.alert("Hai Perso! Il tuo punteggio è " + (score.length - 1))
                     window.location.reload()
                 }
             }
         })
     }
 }
-
+// Array per calcolare il punteggio.
 const score = []
 
 
